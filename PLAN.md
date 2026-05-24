@@ -52,11 +52,13 @@ Goal: make a tiny iPhone-installable PWA that sends this reminder every day at 7
    - Load the saved subscription.
    - Send one Web Push notification with the reminder text.
    - Confirm the installed iPhone PWA receives it while closed.
+   - Status: working
 
 8. Hello push handler
    - In `sw.js`, listen for the `push` event.
    - Call `self.registration.showNotification()` with the reminder text.
    - Keep the notification payload minimal.
+   - Status: working
 
 9. Hello cron
    - Add `vercel.json` with a cron that calls `/api/send`.
