@@ -9,16 +9,19 @@ Goal: make a tiny iPhone-installable PWA that sends this reminder every day at 7
 1. Hello static page
    - Create the smallest possible web page with the reminder text and one button: `Enable reminder`.
    - Deploy it over HTTPS on Vercel.
+   - Status: deployed successfully to Vercel.
 
 2. Hello installable PWA
    - Add `manifest.webmanifest`.
    - Add a basic app name, icon, start URL, display mode, and theme color.
    - Confirm Safari can add it to the iPhone home screen.
+   - Status: installed successfully on iPhone, with the PNG displaying as the home screen icon.
 
 3. Hello service worker
    - Add `sw.js`.
    - Register it from the page.
    - Confirm the service worker installs successfully.
+   - Status: `sw.js` is activated and running in DevTools.
 
 4. Hello notification permission
    - On button click, call `Notification.requestPermission()`.
