@@ -13,6 +13,7 @@
       <p>Eat protein and work on my cursor clone</p>
       <button id="enable-reminder" type="button">Enable reminder</button>
       <p id="permission-result"></p>
+      <p id="save-result"></p>
       <pre id="subscription-result"></pre>
     </main>
     <script>
@@ -42,6 +43,15 @@
           applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
         });
         document.getElementById("subscription-result").textContent = JSON.stringify(subscription, null, 2);
+
+        const saveResponse = await fetch("/api/subscribe", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(subscription),
+        });
+        document.getElementById("save-result").textContent = saveResponse.ok ? "saved" : "save failed";
       });
     </script>
   </body>
