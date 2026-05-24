@@ -60,7 +60,7 @@ Goal: make a tiny iPhone-installable PWA that sends this reminder every day at 7
 
 9. Hello cron
    - Add `vercel.json` with a cron that calls `/api/send`.
-   - Because Vercel cron is UTC, either schedule `0 23 * * *` during Eastern daylight time and `0 0 * * *` during Eastern standard time, or run hourly and have `/api/send` only send when the current time is 7pm in `America/New_York`.
+   - Hard-code the schedule to `0 23 * * *` for 7pm Eastern during daylight time.
 
 10. Hello minimum viable reminder
    - Keep one installed device subscription.
