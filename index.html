@@ -11,12 +11,18 @@
   <body>
     <main>
       <p>Eat protein and work on my cursor clone</p>
-      <button type="button">Enable reminder</button>
+      <button id="enable-reminder" type="button">Enable reminder</button>
+      <p id="permission-result"></p>
     </main>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js");
       }
+
+      document.getElementById("enable-reminder").addEventListener("click", async () => {
+        const result = await Notification.requestPermission();
+        document.getElementById("permission-result").textContent = result;
+      });
     </script>
   </body>
 </html>
