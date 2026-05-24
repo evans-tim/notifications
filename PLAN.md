@@ -33,6 +33,13 @@ Goal: make a tiny iPhone-installable PWA that sends this reminder every day at 7
    - Use the public VAPID key in the client.
    - Call `registration.pushManager.subscribe()`.
    - Print the subscription JSON on the page first.
+   status: {
+  "endpoint": "https://web.push.apple.com/QBdoIsW8hOwMR4jY3aDVN0PAbStxs_RX7UzyQ61gxVRVKKo1o6C-qags3rkinE9Rvy_NbFcNNHTxffyyWfnu7wpEs7mEVskkhmUeJmBBsif23I-3WEDzLc1mKtTbQ2_vipI3zp0wQCGEY1lGN_llm4OUvTS9lRVVveWVHHzzamk",
+  "keys": {
+    "p256dh": "BPrbXIPUPj8Wl1N2B9nbo8gpxFPT1F3vwx5yXcdA64bsolQlCLWrqw3d2xfVJSat-DpZB1lP8BTydhhmbgosMg0",
+    "auth": "fnRvn48zBQ_KlChHmut9Jg"
+  }
+}
 
 6. Hello save subscription
    - Add a Vercel API route like `/api/subscribe`.
