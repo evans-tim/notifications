@@ -1,3 +1,5 @@
+const { createClient } = require("redis");
+
 const SUBSCRIPTION_KEY = "reminder:subscription";
 
 module.exports = async function handler(request, response) {
@@ -7,31 +9,29 @@ module.exports = async function handler(request, response) {
     return;
   }
 
-  const subscription = request.body;
+  const subscription = typeof request.body === "string" ? JSON.parse(request.body) : request.body;
   if (!subscription?.endpoint || !subscription?.keys?.p256dh || !subscription?.keys?.auth) {
     response.status(400).json({ error: "Invalid subscription" });
     return;
   }
 
-  const kvUrl = process.env.KV_REST_API_URL;
-  const kvToken = process.env.KV_REST_API_TOKEN;
-  if (!kvUrl || !kvToken) {
-    response.status(500).json({ error: "Missing KV_REST_API_URL or KV_REST_API_TOKEN" });
+  const redisUrl = process.env.KV_REDIS_URL;
+  if (!redisUrl) {
+    response.status(500).json({ error: "Missing KV_REDIS_URL" });
     return;
   }
 
-  const saveResponse = await fetch(kvUrl, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${kvToken}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(["SET", SUBSCRIPTION_KEY, JSON.stringify(subscription)]),
-  });
+  const redis = createClient({ url: redisUrl });
+  redis.on("error", (error) => console.error(error));
 
-  if (!saveResponse.ok) {
-    response.status(502).json({ error: "Failed to save subscription" });
+  try {
+    await redis.connect();
+    await redis.set(SUBSCRIPTION_KEY, JSON.stringify(subscription));
+  } catch (error) {
+    response.status(502).json({ error: "Failed to save subscription", details: error.message });
     return;
+  } finally {
+    await redis.disconnect();
   }
 
   response.status(200).json({ ok: true });

@@ -51,7 +51,10 @@
           },
           body: JSON.stringify(subscription),
         });
-        document.getElementById("save-result").textContent = saveResponse.ok ? "saved" : "save failed";
+        const saveText = await saveResponse.text();
+        document.getElementById("save-result").textContent = saveResponse.ok
+          ? "saved"
+          : `save failed ${saveResponse.status}: ${saveText}`;
       });
     </script>
   </body>
