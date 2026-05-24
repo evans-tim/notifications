@@ -45,6 +45,7 @@ Goal: make a tiny iPhone-installable PWA that sends this reminder every day at 7
    - Add a Vercel API route like `/api/subscribe`.
    - POST the subscription JSON to it.
    - Store one subscription in the simplest durable store available, such as Vercel KV, Postgres, or Supabase.
+   - Status: saved successfully to Vercel Redis via `KV_REDIS_URL`.
 
 7. Hello manual push
    - Add a Vercel API route like `/api/send`.
