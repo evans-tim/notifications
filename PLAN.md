@@ -26,6 +26,7 @@ Goal: make a tiny iPhone-installable PWA that sends this reminder every day at 7
 4. Hello notification permission
    - On button click, call `Notification.requestPermission()`.
    - Show the result on the page so the POC is debuggable.
+   - Status: permission request returned `granted`.
 
 5. Hello push subscription
    - Generate VAPID keys for Web Push.
