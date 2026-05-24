@@ -13,5 +13,10 @@
       <p>Eat protein and work on my cursor clone</p>
       <button type="button">Enable reminder</button>
     </main>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("./sw.js");
+      }
+    </script>
   </body>
 </html>
